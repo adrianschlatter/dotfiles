@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+HOST=$(hostname -s)
+USER=$(echo "$1" | sed -n 's/^\[sudo\] password for \(.*\): $/\1/p')
+PASSWORD=$(rbw get "${USER}@${HOST}")
+
+echo "${PASSWORD}"

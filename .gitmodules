@@ -1,0 +1,18 @@
+[submodule ".config/tmux/plugins/catppuccin/tmux"]
+	path = .config/tmux/plugins/catppuccin/tmux
+	url = https://github.com/catppuccin/tmux.git
+[submodule ".config/tmux/plugins/tpm"]
+	path = .config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/zsh/powerlevel10k"]
+	path = .config/zsh/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
+[submodule ".config/zsh/zsh-syntax-highlighting"]
+	path = .config/zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule ".config/zsh/catppuccin"]
+	path = .config/zsh/catppuccin
+	url = https://github.com/catppuccin/zsh-syntax-highlighting
+[submodule ".local/share/nvim/site/pack/packer/start/packer.nvim"]
+	path = .local/share/nvim/site/pack/packer/start/packer.nvim
+	url = https://github.com/wbthomason/packer.nvim

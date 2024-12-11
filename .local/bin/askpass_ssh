@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+error() {
+    echo "Error: askpass_ssh can't handle request '$1'" >&2
+    echo ""
+    exit 1
+}
+
+# ssh-add uses $1:
+# Enter passphrase for /home/username/.ssh/id_rsa: 
+# while ssh uses $1:
+# Enter passphrase for key '/home/username/.ssh/id_rsa': 
+# (and both use a space at the end of the line)
+KEY=$(echo "$1" | sed -E -n "s/^Enter passphrase for ((key '(.*)')|(.*)): $/\3\4/p")
+if [[ -z "${KEY}" ]]; then
+    error $1
+fi
+FINGERPRINT=$(ssh-keygen -l -f ${KEY} &> /dev/null | cut -d ' ' -f 2 || error $1)
+PASSPHRASE=$(rbw get "${FINGERPRINT}" --field passphrase || error $1)
+
+echo "${PASSPHRASE}"
