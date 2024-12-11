@@ -7,6 +7,25 @@ This includes:
 * nvim config
 * askpass_ssh and askpass_sudo tools
 
+To install, run:
+
+```
+mkdir -p ~/stow
+cd ~/stow
+git clone git@github.com:adrianschlatter/dotfiles.git
+cd dotfiles
+git submodule init
+git submodule update
+```
+
+And then:
+
+```
+cd ~/stow
+stow dotfiles
+```
+
+
 ## zsh config
 
 Provides
@@ -49,10 +68,22 @@ Then, start tmux and install plugins by pressing prefix, I.
 * debugging
 
 
-## Installation
+### Installation
 
 For copilot support, install node.js. Make sure its a new enough
 version. When first starting nvim, run ```:Copilot setup```
+
+
+## To Do
+
+Write an installer script that
+
+* removes .bash_history, .bash_logout, .bashrc, .profile
+* removes pre-existing .zshrc, .zlogin, .zlogout
+* stows this package (how are stow-things called?)
+* let tmux install its plugins
+* let nvim install packer plugins
+* change the default shell
 
 
 ## History
