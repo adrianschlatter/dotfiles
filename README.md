@@ -57,16 +57,14 @@ ln -s ~/.cargo/bin/rbw-agent ~/.local/bin
 Install by running
 
 ```
-# source the config:
-tmux source-file ~/.config/tmux.conf
 # start a server but don't attach to it:
 tmux start-server
 # create a session but don't attach to it:
 tmux new-session -d
 # install plugins (same at <prefix>+I from inside tmux:
 ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
-# attach to server
-tmux attach
+# enter tmux:
+tmux
 ```
 
 Make sure you download and install MesloGS NF font from
