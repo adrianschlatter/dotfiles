@@ -1,10 +1,21 @@
 #!/bin/zsh
 
+error_locked() {
+    echo "" >&2
+    echo "Error: rbw password database is locked! Unlock it first." >&2
+    echo "--------------------------------------------------------" >&2
+    echo "" >&2
+    echo ""
+    exit 1
+}
+
 error() {
     echo "Error: askpass_ssh can't handle request '$1'" >&2
     echo ""
     exit 1
 }
+
+rbw unlocked &> /dev/null || error_locked
 
 # ssh-add uses $1:
 # Enter passphrase for /home/username/.ssh/id_rsa: 
