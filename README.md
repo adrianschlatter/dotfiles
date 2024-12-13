@@ -36,11 +36,20 @@ Provides
 
 This config unfolds its full potential if you have installed:
 
-* exa (better ls, better tree)
+* exa (better ls, better tree; on Ubuntu named 'eza')
 * bat (better cat)
+* neovim (the editor)
 * rbw bitwarden cli (acces to your password vault)
-* ssh-agent (ssh-keys added using passphrases from bitwarden)
-* nvim (the editor)
+
+```
+sudo -A apt install eza
+sudo -A apt install bat
+sudo -A apt install neovim
+sudo -A apt install cargo
+cargo install --locked rbw
+ln -s ~/.cargo/bin/rbw ~/.local/bin
+ln -s ~/.cargo/bin/rbw-agent ~/.local/bin
+```
 
 
 ## tmux.config
@@ -48,14 +57,21 @@ This config unfolds its full potential if you have installed:
 Install by running
 
 ```
+# source the config:
 tmux source-file ~/.config/tmux.conf
+# start a server but don't attach to it:
+tmux start-server
+# create a session but don't attach to it:
+tmux new-session -d
+# install plugins (same at <prefix>+I from inside tmux:
+~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
+# attach to server
+tmux attach
 ```
 
 Make sure you download and install MesloGS NF font from
 (here)[https://github.com/romkatv/powerlevel10k#fonts]. Then, tell your
 terminal (xterm, iterm, whatever you have) to use this font.
-
-Then, start tmux and install plugins by pressing prefix, I.
 
 
 ## neovim config
