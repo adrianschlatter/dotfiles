@@ -12,11 +12,11 @@ source ~/.config/zsh/zshrc.powerlevel10k
 # Aliases
 # ============================================================================= 
 
-if command -v exa > /dev/null; then
-	alias ls='exa --icons'
-	alias ll='exa -alh'
-	alias l='exa -lh'
-	alias tree='exa --tree'
+if command -v eza > /dev/null; then
+	alias ls='eza --icons'
+	alias ll='eza -alh'
+	alias l='eza -lh'
+	alias tree='eza --tree'
 else
 	alias ls='ls --color'
 	alias ll='ls -alh'

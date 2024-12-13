@@ -36,7 +36,7 @@ Provides
 
 This config unfolds its full potential if you have installed:
 
-* exa (better ls, better tree; on Ubuntu named 'eza')
+* eza
 * bat (better cat)
 * neovim (the editor)
 * rbw bitwarden cli (acces to your password vault)
