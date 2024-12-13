@@ -48,6 +48,9 @@ if command -v rbw > /dev/null; then
 
     export SSH_ASKPASS="${HOME}/.local/bin/askpass_ssh"
     export SSH_ASKPASS_REQUIRE=force
+
+    # also configure rbw-menu (separate tool) to use fzf:
+    export RBW_MENU_COMMAND='fzf --prompt "$query: "'
 fi
 
 # MOSH
