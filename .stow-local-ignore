@@ -1,4 +1,5 @@
-^/.git
-^/.gitmodules
+\.git
+\.gitignore
+\.gitmodules
 ^/README.md
 ^/TODO.md
