@@ -36,7 +36,11 @@ then
         error $1
     fi
     FINGERPRINT=$(ssh-keygen -l -f ${KEY} &> /dev/null | cut -d ' ' -f 2 || error $1)
-    PASSPHRASE=$(rbw get "${FINGERPRINT}" --field passphrase || error $1)
+    RBW_ENTRY=$(rbw search --folder SSH-Keys "${FINGERPRINT}") || error $1
+    # drop the "SSH-Keys/" prefix from the entry name:
+    RBW_ENTRY=${RBW_ENTRY#SSH-Keys/}
+    # retrieve the passphrase:
+    PASSPHRASE=$(rbw get "${RBW_ENTRY}" --field passphrase || error $1)
 
     echo "${PASSPHRASE}"
     exit 0
