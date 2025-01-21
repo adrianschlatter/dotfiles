@@ -21,12 +21,37 @@ rbw unlocked &> /dev/null || error_locked
 # Enter passphrase for /home/username/.ssh/id_rsa: 
 # while ssh uses $1:
 # Enter passphrase for key '/home/username/.ssh/id_rsa': 
-# (and both use a space at the end of the line)
-KEY=$(echo "$1" | sed -E -n "s/^Enter passphrase for ((key '(.*)')|(.*)): $/\3\4/p")
-if [[ -z "${KEY}" ]]; then
-    error $1
-fi
-FINGERPRINT=$(ssh-keygen -l -f ${KEY} &> /dev/null | cut -d ' ' -f 2 || error $1)
-PASSPHRASE=$(rbw get "${FINGERPRINT}" --field passphrase || error $1)
+# or for password authentication instead of publickey:
+# root@fwa.home's password: 
+# (and all of them use a space at the end of the line)
 
-echo "${PASSPHRASE}"
+# first, determine whether we need a key's passphrase or a simple password:
+if [[ "$1" = *passphrase* ]]
+then
+    # we need a passphrase
+
+    # this line handles both cases:
+    KEY=$(echo "$1" | sed -E -n "s/^Enter passphrase for ((key '(.*)')|(.*)): $/\3\4/p")
+    if [[ -z "${KEY}" ]]; then
+        error $1
+    fi
+    FINGERPRINT=$(ssh-keygen -l -f ${KEY} &> /dev/null | cut -d ' ' -f 2 || error $1)
+    PASSPHRASE=$(rbw get "${FINGERPRINT}" --field passphrase || error $1)
+
+    echo "${PASSPHRASE}"
+    exit 0
+fi
+
+if [[ "$1" = *password* ]]
+then
+    # we need a simple password
+
+    USER=$(echo "$1" | sed -E -n "s/^([^@]*)@.*$/\1/p")
+    HOST=$(echo "$1" | sed -E -n "s/^$USER@([^']*)'s password: $/\1/p")
+    PASSWORD=$(rbw get "${HOST}" "${USER}" || error $1)
+
+    echo "${PASSWORD}"
+    exit 0
+fi
+
+error $1
