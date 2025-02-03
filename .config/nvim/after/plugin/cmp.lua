@@ -1,10 +1,6 @@
 local cmp = require('cmp')
 
 cmp.setup({
-    mapping = cmp.mapping.preset.insert({
-        -- confirm completion
-        ['<C-e>'] = cmp.mapping.confirm({select = true}),
-    }),
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -14,7 +10,17 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
-    }
+    },
+    formatting = {  -- show source of each completion
+        format = function(entry, vim_item)
+            vim_item.menu = entry.source.name
+            return vim_item
+        end,
+    },
+    window = {     -- bordered completion windows
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
 })
 
 
