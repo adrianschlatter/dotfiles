@@ -1,45 +1,61 @@
-local lsp = require('lsp-zero')
+-- Add cmp_nvim_lsp capabilities settings to lspconfig
+-- This should be executed before you configure any language server
+local lspconfig_defaults = require('lspconfig').util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lspconfig_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+)
+
+-- This is where you enable features that only work
+-- if there is a language server active in the file
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = {buffer = event.buf}
+
+        vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
+        vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)
+        vim.keymap.set('n', 'go', function() vim.lsp.buf.type_definition() end, opts)
+        vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set('n', 'gs', function() vim.lsp.buf.signature_help() end, opts)
+        vim.keymap.set('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set({'n', 'x'}, '<F3>', function() vim.lsp.buf.format({async = true}) end, opts)
+        vim.keymap.set('n', '<F4>', function() vim.lsp.buf.code_action() end, opts)
+    end,
+})
+
+-- Let mason install and setup LSP servers:
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {'pylsp', 'lua_ls'},
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+    },
+})
+
+-- Change gutter symbols:
+local signs = { Error = "✘ ", Warn = "▲ ", Hint = "⚑ ", Info = "» " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 -- fix undefined global 'vim' error:
--- (thanks to the Primeagen)
-lsp.configure('lua_ls', {
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' },
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                    'vim',
+                },
             },
         },
     },
-})
-
-lsp.on_attach(function(client, bufnr)
-    local opts = {buffer = bufnr, remap = false}
-
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp.default_keymaps({buffer = bufnr})
-    -- set keymap for symbol renaming:
-    vim.keymap.set('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
-end)
-
-lsp.set_sign_icons({
-  error = '✘',
-  warn = '▲',
-  hint = '⚑',
-  info = '»'
-})
-
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = {'pylsp', 'lua_ls'},
-    handlers = {
-        require('lsp-zero').default_setup,
-    },
-})
-
--- add a border around :LspInfo window:
-require('lspconfig.ui.windows').default_options = {
-  border = "single",
 }
-
-lsp.setup()
