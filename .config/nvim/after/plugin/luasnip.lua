@@ -65,7 +65,10 @@ ls.add_snippets('all', {
     s({trig = "''O", snippetType = 'autosnippet', wordTrig = false}, {t('Ö')}),
     s({trig = "''u", snippetType = 'autosnippet', wordTrig = false}, {t('ü')}),
     s({trig = "''U", snippetType = 'autosnippet', wordTrig = false}, {t('Ü')}),
-    s({trig = "$o", snippetType = 'snippet', wordTrig = false}, {t('ø')}),
+    s({trig = "$$o", snippetType = 'autosnippet', wordTrig = false}, {t('ø')}),
+    s({trig = "&&a", snippetType = 'autosnippet', wordTrig = false}, {t('à')}),
+    s({trig = "&&e", snippetType = 'autosnippet', wordTrig = false}, {t('è')}),
+    s({trig = "%%e", snippetType = 'autosnippet', wordTrig = false}, {t('é')}),
 })
 
 ls.add_snippets('python', {
