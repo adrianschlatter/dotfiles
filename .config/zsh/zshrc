@@ -63,10 +63,11 @@ then
 	export LC_CTYPE=en_US.UTF-8
 fi
 
-# OPEN-AI Key for mods:
+# AI Keys for mods:
 #==============================================================================
 
 [[ -f ~/.OPENAI_API_KEY ]] && export OPENAI_API_KEY=$(cat ~/.OPENAI_API_KEY)
+[[ -f ~/.XAI_API_KEY ]] && export XAI_API_KEY=$(cat ~/.XAI_API_KEY)
 
 # HISTORY
 # ============================================================================= 
