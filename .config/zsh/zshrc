@@ -124,6 +124,10 @@ function timew-tagrename()
 if [[ -f ~/.fzf/bin/fzf ]]
 then
     path=(~/.fzf/bin $path)
+fi
+
+if command -v fzf > /dev/null
+then
     source <(fzf --zsh)
 fi
 
