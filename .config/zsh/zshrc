@@ -118,6 +118,15 @@ function timew-tagrename()
 	echo "$idlist" | xargs -I ids timew untag ids "$oldtag"
 }
 
+# fzf
+# =============================================================================
+
+if [[ -f ~/.fzf/bin/fzf ]]
+then
+    path=(~/.fzf/bin $path)
+    source <(fzf --zsh)
+fi
+
 # emacs mode
 # =============================================================================
 
