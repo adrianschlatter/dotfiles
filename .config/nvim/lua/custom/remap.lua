@@ -1,3 +1,5 @@
+local wk = require("which-key")
+
 -- emacs-like navigation in command-line:
 -- (<C-E> is already mapped to end of line)
 vim.keymap.set('c', '<C-A>', '<Home>')
@@ -13,6 +15,10 @@ vim.keymap.set('i', '<C-S>', '<C-T>')
 -- indenting in visual mode (> and <) loses selection. I don't want that:
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+wk.add({
+    { '<', desc = 'de-indent', mode = 'v' },
+    { '>', desc = 'indent', mode = 'v' },
+})
 
 -- move and indent highlighted text blocks:
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -45,9 +51,6 @@ vim.keymap.set('n', '-', '<cmd>Oil<CR>', { desc = 'open parent directory' })
 -- luasnip:
 local ls = require('luasnip')
 
-vim.keymap.set('n', '<leader>ls',
-               '<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>')
-
 vim.keymap.set({'i'}, '<C-K>', function() ls.expand() end, {silent = true})
 vim.keymap.set({'i', 's'}, '<C-L>', function() ls.jump( 1) end, {silent = true})
 vim.keymap.set({'i', 's'}, '<C-H>', function() ls.jump(-1) end, {silent = true})
@@ -57,4 +60,3 @@ vim.keymap.set({'i', 's'}, '<C-E>', function()
 		ls.change_choice(1)
 	end
 end, {silent = true})
-

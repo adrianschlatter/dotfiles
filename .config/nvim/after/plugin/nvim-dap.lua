@@ -1,3 +1,5 @@
+local wk = require("which-key")
+
 -- keymaps:
 vim.keymap.set('n', '<leader>db', vim.cmd.DapToggleBreakpoint)
 vim.keymap.set('n', '<leader>dB',
@@ -8,6 +10,18 @@ vim.keymap.set('n', '<leader>di', vim.cmd.DapStepInto)
 vim.keymap.set('n', '<leader>do', vim.cmd.DapStepOut)
 vim.keymap.set('n', '<leader>dr', vim.cmd.DapToggleRepl)
 vim.keymap.set('n', '<leader>dx', vim.cmd.DapTerminate)
+
+wk.add({
+    { '<leader>d', group = 'debug' },
+    { '<leader>db', desc = 'toggle breakpoint' },
+    { '<leader>dB', desc = 'conditional breakpoint' },
+    { '<leader>dc', desc = 'continue' },
+    { '<leader>ds', desc = 'step over' },
+    { '<leader>di', desc = 'step into' },
+    { '<leader>do', desc = 'step out' },
+    { '<leader>dr', desc = 'repl' },
+    { '<leader>dx', desc = 'terminate' },
+})
 
 -- icons for gutter:
 -- first, define highlight groups:
