@@ -1,6 +1,12 @@
 # PATH
 # ============================================================================= 
 
+# on some computers, nvim is in /opt:
+if [[ -e /opt/nvim-linux-x86_64/bin/nvim ]]
+then
+    path=(/opt/nvim-linux-x86_64/bin $path)
+fi
+
 path=(~/.local/bin ~/.cargo/bin $path)
 
 # POWERLEVEL10K
