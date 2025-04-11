@@ -25,6 +25,16 @@ cd ~/stow
 stow dotfiles
 ```
 
+## You may also need
+
+You may also need a recent version of neovim. If your distro does not include
+one, I recommend installing a binary release (check neovim's website) into
+/opt/nvim. zshrc will then pick it up automatically.
+
+With fzf, it is also a bit tricky to get a new-ish version. Get a binary
+release from Github (there is a single `fzf` executable inside) and put in in 
+`~/.local/bin`.
+
 
 ## zsh config
 
