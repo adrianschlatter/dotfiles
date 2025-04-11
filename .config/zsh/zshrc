@@ -2,9 +2,9 @@
 # ============================================================================= 
 
 # on some computers, nvim is in /opt:
-if [[ -e /opt/nvim-linux-x86_64/bin/nvim ]]
+if [[ -e /opt/nvim/bin/nvim ]]
 then
-    path=(/opt/nvim-linux-x86_64/bin $path)
+    path=(/opt/nvim/bin $path)
 fi
 
 path=(~/.local/bin ~/.cargo/bin $path)
