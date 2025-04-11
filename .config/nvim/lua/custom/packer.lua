@@ -26,24 +26,15 @@ return require('packer').startup(function(use)
 	-- visualizes undo history (including branches):
 	use { 'mbbill/undotree' }
 	use { 'tpope/vim-fugitive' }    -- git integration
-    -- support for language servers:
-	use {
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
-		requires = {
-			{'williamboman/mason.nvim'},
-			{'williamboman/mason-lspconfig.nvim'},
-
-			-- LSP Support
-			{'neovim/nvim-lspconfig'},
-
-			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-path'},
-			{'hrsh7th/cmp-nvim-lsp'},
-			{'L3MON4D3/LuaSnip'},
-		}
-	}
+    -- support for language servers (and completion):
+    use {'williamboman/mason.nvim'}
+    use {'williamboman/mason-lspconfig.nvim'}
+    use {'neovim/nvim-lspconfig'}    -- LSP support
+    use {'hrsh7th/nvim-cmp'}    -- completion engine
+    use {'hrsh7th/cmp-nvim-lsp'}    -- LSP source for nvim-cmp
+    use {'hrsh7th/cmp-buffer'}    -- buffer source for nvim-cmp
+    use {'hrsh7th/cmp-path'}    -- path source for nvim-cmp
+    use {'L3MON4D3/LuaSnip'}    -- snippet engine
     -- commenting / uncommenting easily:
     -- gcc comments out a line, gc comments out the target of a motion
     use { 'tpope/vim-commentary' }
