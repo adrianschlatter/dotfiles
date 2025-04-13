@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
     use {'hrsh7th/cmp-nvim-lsp'}    -- LSP source for nvim-cmp
     use {'hrsh7th/cmp-buffer'}    -- buffer source for nvim-cmp
     use {'hrsh7th/cmp-path'}    -- path source for nvim-cmp
+    use {'ray-x/lsp_signature.nvim'}    -- signature help
     use {'L3MON4D3/LuaSnip'}    -- snippet engine
     -- commenting / uncommenting easily:
     -- gcc comments out a line, gc comments out the target of a motion
