@@ -84,4 +84,6 @@ return require('packer').startup(function(use)
     use { 'nvim-tree/nvim-web-devicons' }
     use { 'echasnovski/mini.nvim' }
     use { 'folke/which-key.nvim' }
+    -- image support:
+    use { 'folke/snacks.nvim' }
 end)
