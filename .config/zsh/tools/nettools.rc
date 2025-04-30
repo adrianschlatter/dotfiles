@@ -1,0 +1,64 @@
+# Utilities to diagnose network issues
+
+IP_ADDR_REGEX="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+DEV_NAME_REGEX="[a-zA-Z0-9]+"
+
+interfaces() {
+    # List all interfaces
+
+    ip link show | grep -E -o "^[0-9]+: $DEV_NAME_REGEX" | cut -d ':' -f2 | tr -d ' '
+}
+
+ip_addr() {
+    interface="$1"
+    # IP address of given interface
+
+    ip addr show "$interface" 2>&1 > /dev/null || {echo "No such interface: $interface" ; return 1}
+    ip addr show "$interface" | grep -E -o "inet $IP_ADDR_REGEX" | cut -d' ' -f2
+}
+
+network() {
+    interface="$1"
+    # Network address of given interface
+
+    ip addr show "$interface" 2>1 > /dev/null || {echo "No such interface: $interface" ; return 1}
+    ip addr show "$interface" | grep -E -o "inet $IP_ADDR_REGEX/[0-9]{2}" | cut -d' ' -f2
+}
+
+gateways() {
+    interface="$1"
+    # Default gateway of given interface
+
+    ip route show default | grep -E -o "^default via $IP_ADDR_REGEX dev $DEV_NAME_REGEX" | cut -d ' ' -f3,5
+}
+
+dns_servers_resolv_conf() {
+    # DNS servers as reported by /etc/resolv.conf
+
+    cat /etc/resolv.conf | grep -E -o "nameserver $IP_ADDR_REGEX" | cut -d ' ' -f2
+}
+
+dns_servers_resolvectl() {
+    # Upstream DNS servers as reported by resolvectl
+
+    if command -v resolvectl &> /dev/null; then
+        resolvectl dns
+    else
+        echo "resolvectl not found"
+        return 1
+    fi
+}
+
+resolve() {
+    domain="$1"
+    # Resolve domain name to IP address
+
+    dig "$domain" +short
+}
+
+arp_scan() {
+    network="$1"
+    # ARP scan given network. List neighbors.
+
+    sudo -A nmap -n -sn -PR "$network" | grep -E -o "$IP_ADDR_REGEX" | sort -t . -n -k 1,1 -k 2,2 -k 3,3 -k 4,4
+}
