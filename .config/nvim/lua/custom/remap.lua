@@ -63,3 +63,10 @@ vim.keymap.set({'i', 's'}, '<C-E>', function()
 		ls.change_choice(1)
 	end
 end, {silent = true})
+
+-- diagnostics:
+vim.keymap.set('n', '<leader>+q', vim.diagnostic.setqflist)
+wk.add({
+    { '<leader>+', group = 'diagnostics' },
+    { '<leader>+q', desc = 'diagnostics => quickfix list' },
+})
