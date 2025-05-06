@@ -61,6 +61,8 @@ if command -v rbw > /dev/null; then
 
     # also configure rbw-menu (separate tool) to use fzf:
     export RBW_MENU_COMMAND='fzf --prompt "$query: "'
+
+    alias ru='rbw unlock'
 fi
 
 # MOSH
