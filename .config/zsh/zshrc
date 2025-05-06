@@ -44,6 +44,10 @@ fi
 alias gls='git status'
 alias grep='grep --color=auto'
 
+if command -v kitten > /dev/null; then
+    alias icat='kitten icat'
+fi
+
 # Use rbw (bitwarden cli) for sudo and ssh passwords
 # =============================================================================
 
