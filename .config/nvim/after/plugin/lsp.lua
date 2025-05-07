@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Let mason install and setup LSP servers:
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {'pylsp', 'lua_ls'},
+    ensure_installed = {'pylsp', 'lua_ls', 'marksman'},
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({})
