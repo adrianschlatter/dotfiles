@@ -19,10 +19,10 @@ source ~/.config/zsh/zshrc.powerlevel10k
 # ============================================================================= 
 
 if command -v eza > /dev/null; then
-	alias ls='eza --icons'
-	alias ll='eza -alh'
-	alias l='eza -lh'
-	alias tree='eza --tree'
+	alias ls='eza --icons --group-directories-first'
+	alias ll='eza -alh --group-directories-first'
+	alias l='eza -lh --group-directories-first'
+	alias tree='eza --tree --group-directories-first'
 else
 	alias ls='ls --color'
 	alias ll='ls -alh'
