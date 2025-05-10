@@ -46,3 +46,24 @@ vim.g.mapleader = ' '
 -- enable spell checking:
 vim.opt.spelllang = 'en_us,de_ch'
 vim.opt.spell = true
+
+-- enable folding:
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    callback = function()
+        -- check if treesitter has parser 
+        if require("nvim-treesitter.parsers").has_parser() then
+            -- use treesitter folding
+            vim.opt.foldmethod = "expr"
+            vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+            -- keep all folds open by default:
+            vim.opt.foldlevel = 99
+            -- just use the existing line as fold text (this also preserves the
+            -- syntax highlighting):
+            vim.opt.foldtext = ""
+        else
+            -- use alternative fold method:
+            vim.opt.foldmethod = "syntax"
+        end
+    end,
+})
+
