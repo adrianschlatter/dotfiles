@@ -1,8 +1,5 @@
 local wk = require("which-key")
 
--- tj as <esc>:
-vim.keymap.set('i', 'tj', '<Esc>')
-
 -- emacs-like navigation in command-line:
 -- (<C-E> is already mapped to end of line)
 vim.keymap.set('c', '<C-A>', '<Home>')
