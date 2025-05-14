@@ -70,3 +70,9 @@ wk.add({
     { '<leader>+', group = 'diagnostics' },
     { '<leader>+q', desc = 'diagnostics => quickfix list' },
 })
+
+-- quote words:
+vim.keymap.set('n', '<leader>q`', 'ciw`<C-r>"`<esc>',
+               { desc = 'backtick-quote word' })
+vim.keymap.set('n', '<leader>q"', 'ciw"<C-r>""<esc>',
+               { desc = 'double-quote word' })
