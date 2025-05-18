@@ -48,6 +48,11 @@ if command -v kitten > /dev/null; then
     alias icat='kitten icat'
 fi
 
+if [[ -f /Library/Frameworks/R.framework/Resources/library/rush/exec/rush ]]
+then
+    alias rush='/Library/Frameworks/R.framework/Resources/library/rush/exec/rush'
+fi
+
 # Use rbw (bitwarden cli) for sudo and ssh passwords
 # =============================================================================
 
