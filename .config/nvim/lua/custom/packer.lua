@@ -86,4 +86,6 @@ return require('packer').startup(function(use)
     use { 'folke/which-key.nvim' }
     -- image support:
     use { 'folke/snacks.nvim' }
+    -- drag & drop image links as well as images into nvim:
+    use { 'HakonHarnes/img-clip.nvim' }
 end)
