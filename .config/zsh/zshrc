@@ -51,6 +51,9 @@ fi
 if [[ -f /Library/Frameworks/R.framework/Resources/library/rush/exec/rush ]]
 then
     alias rush='/Library/Frameworks/R.framework/Resources/library/rush/exec/rush'
+elif [[ -f ~/R/x86_64-pc-linux-gnu-library/4.3/rush/exec/rush ]]
+then
+    alias rush='~/R/x86_64-pc-linux-gnu-library/4.3/rush/exec/rush'
 fi
 
 if command -v qutebrowser > /dev/null; then
