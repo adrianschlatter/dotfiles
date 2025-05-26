@@ -59,6 +59,8 @@ require('mason-lspconfig').setup({
             require('lspconfig')[server_name].setup({})
         end,
     },
+    -- let me do some stuff manually (such as lua_ls.setup(...) below):
+    automatic_enable = false,
 })
 
 -- Change gutter symbols:
@@ -70,3 +72,22 @@ end
 
 -- setup lsp-signature:
 require('lsp_signature').setup()
+
+-- setup lua_ls:
+require('lspconfig').lua_ls.setup( {
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- make LSP recognize 'vim' as a global variable:
+                globals = {'vim', },
+            },
+            workspace = {
+                -- make the server aware of neovim runtime files:
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- do not send telemetry:
+            telemetry = {
+                enable = false,
+            },
+        },
+    } } )
