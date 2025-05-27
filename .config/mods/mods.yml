@@ -1,5 +1,5 @@
 # Default model (gpt-3.5-turbo, gpt-4, ggml-gpt4all-j...).
-default-model: grok-beta
+default-model: gpt-4o
 # Text to append when using the -f flag.
 format-text:
   markdown: 'Format the response as markdown without enclosing backticks.'
@@ -42,7 +42,7 @@ fanciness: 10
 # Text to show while generating.
 status-text: Generating
 # Theme to use in the forms. Valid units are: 'charm', 'catppuccin', 'dracula', and 'base16'
-theme: charm
+theme: catppuccin
 # Default character limit on input to model.
 max-input-chars: 12250
 # Maximum number of tokens in response.
@@ -53,12 +53,10 @@ apis:
     base-url: https://api.x.ai/v1
     api-key-env: XAI_API_KEY
     models:
-      grok-beta:
-        aliases: ["grok3"]
-        fallback: grok-2-12-12
-      grok-2-12-12:
-        aliases: ["grok2"]
-        fallback:
+      grok3-mini:
+        aliases: ["grok-3-mini"]
+      grok3:
+        aliases: ["grok-3"]
   openai:
     base-url: https://api.openai.com/v1
     api-key:
