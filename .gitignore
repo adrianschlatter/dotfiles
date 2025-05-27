@@ -1,3 +1,5 @@
 .config/tmux/plugins
 .config/nvim/plugin
+.config/nvim/spell
+.config/mods/conversations
 .local/share/nvim
