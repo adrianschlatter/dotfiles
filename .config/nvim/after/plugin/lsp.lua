@@ -91,3 +91,6 @@ require('lspconfig').lua_ls.setup( {
             },
         },
     } } )
+
+-- setup marksman:
+require('lspconfig').marksman.setup({})
