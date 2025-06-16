@@ -88,4 +88,10 @@ return require('packer').startup(function(use)
     use { 'folke/snacks.nvim' }
     -- drag & drop image links as well as images into nvim:
     use { 'HakonHarnes/img-clip.nvim' }
+
+    -- markdown preview:
+    use { 'iamcco/markdown-preview.nvim',
+          run = function() vim.fn["mkdp#util#install"]() end,
+      }
+
 end)
