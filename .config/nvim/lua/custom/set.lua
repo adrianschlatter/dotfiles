@@ -67,3 +67,5 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
+-- markdown-preview: Don't close preview when switching buffer:
+vim.g.mkdp_auto_close = 0
