@@ -69,3 +69,21 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- markdown-preview: Don't close preview when switching buffer:
 vim.g.mkdp_auto_close = 0
+
+-- use windows clipboard in WSL2:
+local uname_output = vim.fn.system('uname -r')
+if string.find(uname_output, "microsoft") then
+    -- Create the augroup
+    local augroup_id = vim.api.nvim_create_augroup("Yank", { clear = true })
+
+    -- Create the autocmd for TextYankPost
+    vim.api.nvim_create_autocmd("TextYankPost", {
+        group = augroup_id,
+        callback = function()
+            -- Get the content of the default register (yanked text)
+            local yanked_text = vim.fn.getreg('"')
+            -- Pipe the yanked text to clip.exe
+            vim.fn.system({ "/mnt/c/windows/system32/clip.exe" }, yanked_text)
+        end,
+    })
+end
