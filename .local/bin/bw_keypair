@@ -1,0 +1,73 @@
+#!/bin/zsh
+
+KEYNAME=$(gum input --placeholder "id_ed25519_eniac")
+TARGETHOST=$(gum input --placeholder "adrian@target_host.ch")
+SOURCEHOST=$(gum input --placeholder "aschla@source_host.ch")
+
+# This is where the key will be stored:
+KEYFILENAME="$HOME/.ssh/$KEYNAME"
+
+# 16-character passphrase:
+PASS=$(rbw generate 16)
+
+# Generate an ed25519 SSH key pair:
+ssh-keygen -t ed25519 -C "$SOURCEHOST=>$TARGETHOST" -f "$KEYFILENAME" -N "$PASS"
+
+# Info for bitwarden entry:
+FINGERPRINT=$(ssh-keygen -l -f "$KEYFILENAME.pub" | cut -d ' ' -f 2)
+PUBKEY=$(<"$KEYFILENAME.pub")
+
+gum format -t markdown << EOF
+# Bitwarden Entry
+
+(Sorry, you have to copy & paste this manually.)
+
+
+## Item name
+
+$SOURCEHOST => $TARGETHOST
+
+## Note
+
+SSH $SOURCEHOST => $TARGETHOST
+
+## Key Name
+
+$KEYNAME
+
+## Target Host
+
+$TARGETHOST
+
+## Source Host
+
+$SOURCEHOST
+
+## Passphrase
+
+"$PASS"
+
+## Fingerprint
+
+$FINGERPRINT
+
+## Public Key
+
+$PUBKEY
+
+# For your .ssh/config
+
+\`\`\`zsh
+Host $TARGETHOST
+    HostName ${TARGETHOST##*@}
+    User ${TARGETHOST%%@*}
+    IdentityFile ~/.ssh/$KEYNAME
+\`\`\`
+
+# copy ID
+
+\`\`\`zsh
+ssh-copy-id -i "$KEYFILENAME.pub" "$TARGETHOST"
+\`\`\`
+
+EOF
