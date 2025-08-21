@@ -12,7 +12,7 @@ To install, run:
 ```
 mkdir -p ~/stow
 cd ~/stow
-git clone git@github.com:adrianschlatter/dotfiles.git
+git clone https://github.com/adrianschlatter/dotfiles.git
 cd dotfiles
 git submodule init
 git submodule update
@@ -21,8 +21,11 @@ git submodule update
 And then:
 
 ```
+sudo apt install stow
+sudo apt install zsh
 cd ~/stow
 stow dotfiles
+chsh -s $(which zsh)
 ```
 
 ## You may also need
@@ -48,13 +51,14 @@ This config unfolds its full potential if you have installed:
 
 * eza
 * bat (better cat)
+* zoxide (better cd)
 * neovim (the editor)
 * rbw bitwarden cli (acces to your password vault)
 
 ```
 sudo -A apt install eza
 sudo -A apt install bat
-sudo -A apt install neovim
+sudo -A apt install zoxide
 sudo -A apt install cargo
 cargo install --locked rbw
 ln -s ~/.cargo/bin/rbw ~/.local/bin
