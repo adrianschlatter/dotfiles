@@ -142,24 +142,6 @@ function timew-tagrename()
 	echo "$idlist" | xargs -I ids timew untag ids "$oldtag"
 }
 
-# fzf
-# =============================================================================
-
-if [[ -f ~/.fzf/bin/fzf ]]
-then
-    path=(~/.fzf/bin $path)
-fi
-
-if command -v fzf > /dev/null
-then
-    source <(fzf --zsh)
-fi
-
-# nettools
-# =============================================================================
-
-source ~/.config/zsh/tools/nettools.rc
-
 # vi mode
 # =============================================================================
 
@@ -185,6 +167,26 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
 
+# fzf
+# =============================================================================
+
+# (note: must be after activation of vi mode, otherwise fzf installs
+# keybindings into emacs mode)
+
+if [[ -f ~/.fzf/bin/fzf ]]
+then
+    path=(~/.fzf/bin $path)
+fi
+
+if command -v fzf > /dev/null
+then
+    source <(fzf --zsh)
+fi
+
+# nettools
+# =============================================================================
+
+source ~/.config/zsh/tools/nettools.rc
 
 # catppuccin syntax-highlighting theme
 # (must be last in this config file)
