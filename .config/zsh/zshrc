@@ -160,13 +160,25 @@ fi
 
 source ~/.config/zsh/tools/nettools.rc
 
-# emacs mode
+# vi mode
 # =============================================================================
 
-# Sometimes something (tmux?) switches zsh to vi mode.
-# Make sure it's in emacs mode:
+# switch zsh to vi-mode
+bindkey -v
 
-bindkey -e
+# but keep certain shortcuts from emacs-mode:
+# (these are so hard-wired in muscle memory, I just can't work without):
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^F" forward-char
+bindkey "^B" backward-char
+bindkey "^K" kill-line
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
+bindkey "^R" history-incremental-search-backward
+
+# and make backspace behave properly:
+bindkey "^?" backward-delete-char
 
 # add command-line editing feature and shortcut:
 autoload edit-command-line
