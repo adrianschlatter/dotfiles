@@ -76,7 +76,7 @@ vim.keymap.set('n', '<leader>q"', 'ciw"<C-r>""<esc>',
 
 -- Github copilot:
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-L>", 'copilot#Accept("<CR>")',
+vim.api.nvim_set_keymap("i", "<S-tab>", 'copilot#Accept("<CR>")',
                         { silent = true, expr = true })
 
 -- img-clip:
