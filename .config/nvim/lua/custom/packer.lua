@@ -94,4 +94,6 @@ return require('packer').startup(function(use)
           run = function() vim.fn["mkdp#util#install"]() end,
       }
 
+    -- send2tmux:
+    use { '~/projects/send2tmux.nvim' }
 end)

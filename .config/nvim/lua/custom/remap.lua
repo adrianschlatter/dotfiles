@@ -83,3 +83,16 @@ vim.api.nvim_set_keymap("i", "<S-tab>", 'copilot#Accept("<CR>")',
 vim.keymap.set('n', '<leader>ip', '<cmd>PasteImage<cr>',
                { desc = 'Paste image from system clipboard' })
 
+-- send2tmux
+local send2tmux = require('send2tmux')
+vim.keymap.set('n', '<leader>ss', send2tmux.send_current_line,
+               { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>s', send2tmux.send_selection,
+               { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n',
+--     '<leader>s', [[:set opfunc=v:lua.require'send2tmux'.send_text_with_motion<CR>g@]],
+--     { noremap = true, silent = true })
+vim.keymap.set('n',
+    '<leader>s', [[:set opfunc=v:lua.require'send2tmux'.send_text_with_motion<CR>g@]],
+    { noremap = true, silent = true })
+
