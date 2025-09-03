@@ -83,7 +83,7 @@ if string.find(uname_output, "microsoft") then
             -- Get the content of the default register (yanked text)
             local yanked_text = vim.fn.getreg('"')
             -- Pipe the yanked text to clip.exe
-            vim.fn.system({ "/mnt/c/windows/system32/clip.exe" }, yanked_text)
+            vim.fn.system({ "/mnt/c/Windows/System32/clip.exe" }, yanked_text)
         end,
     })
 end
