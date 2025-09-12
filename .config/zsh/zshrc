@@ -155,12 +155,16 @@ bindkey "^E" end-of-line
 bindkey "^F" forward-char
 bindkey "^B" backward-char
 bindkey "^K" kill-line
+bindkey "^D" delete-char
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
 bindkey "^R" history-incremental-search-backward
 
 # and make backspace behave properly:
 bindkey "^?" backward-delete-char
+
+# make Esc delay shorter (otherwise it feels laggy):
+export KEYTIMEOUT=1
 
 # add command-line editing feature and shortcut:
 autoload edit-command-line
