@@ -1,12 +1,3 @@
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
-
 -- This is where you enable features that only work
 -- if there is a language server active in the file
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -50,47 +41,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
--- Let mason install and setup LSP servers:
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = {'pylsp', 'lua_ls', 'marksman'},
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    },
-    -- let me do some stuff manually (such as lua_ls.setup(...) below):
-    automatic_enable = false,
-})
-
--- Change gutter symbols:
-local signs = { Error = "✘ ", Warn = "▲ ", Hint = "⚑ ", Info = "» " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 -- setup lsp-signature:
 require('lsp_signature').setup()
-
--- setup lua_ls:
-require('lspconfig').lua_ls.setup( {
-    settings = {
-        Lua = {
-            diagnostics = {
-                -- make LSP recognize 'vim' as a global variable:
-                globals = {'vim', },
-            },
-            workspace = {
-                -- make the server aware of neovim runtime files:
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- do not send telemetry:
-            telemetry = {
-                enable = false,
-            },
-        },
-    } } )
-
--- setup marksman:
-require('lspconfig').marksman.setup({})

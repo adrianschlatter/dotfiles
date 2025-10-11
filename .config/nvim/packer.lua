@@ -26,10 +26,8 @@ return require('packer').startup(function(use)
 	-- visualizes undo history (including branches):
 	use { 'mbbill/undotree' }
 	use { 'tpope/vim-fugitive' }    -- git integration
-    -- support for language servers (and completion):
-    use {'williamboman/mason.nvim'}
-    use {'williamboman/mason-lspconfig.nvim'}
-    use {'neovim/nvim-lspconfig'}    -- LSP support
+    use {'williamboman/mason.nvim'}  -- manages installation of LSP servers
+    use {'neovim/nvim-lspconfig'}    -- LSP configurations
     use {'hrsh7th/nvim-cmp'}    -- completion engine
     use {'hrsh7th/cmp-nvim-lsp'}    -- LSP source for nvim-cmp
     use {'hrsh7th/cmp-buffer'}    -- buffer source for nvim-cmp
