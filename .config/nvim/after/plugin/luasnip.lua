@@ -118,3 +118,19 @@ ls.add_snippets('rst', {
         {i(1, 'filename'), i(2, '<alternate text>'), i(0, '<caption>')})
     ),
 })
+
+ls.add_snippets('markdown', {
+    -- figure:
+    s({trig = 'fig'},
+      fmt(
+        [[
+        <figure>
+            <img src="{}" alt="{}">
+            <figcaption>
+            {}
+            </figcaption>
+        </figure>
+        ]],
+        {i(1, 'filename'), i(2, '<alternate text>'), i(0, '<caption>')})
+    ),
+})
