@@ -7,7 +7,7 @@ require('nvim-treesitter.configs').setup {
   sync_install = false,
 
   -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have  CLI installed locally
+  -- Recommendation: set to false if you don't have CLI installed locally
   auto_install = true,
 
   highlight = {
@@ -21,6 +21,10 @@ require('nvim-treesitter.configs').setup {
             return true
         end
     end,
+
+    indent = {
+            enable = true,
+    },
 
     -- Setting this to true will run  and tree-sitter at the same time.
     -- Set this to  if you depend on 'syntax' being enabled (like for indentation).
