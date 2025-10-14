@@ -1,6 +1,6 @@
 require('nvim-treesitter.configs').setup({
     -- A list of parser names, or "all"
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "awk",
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "awk", "latex",
                        "python", "html", "javascript", "rst", "markdown" },
     highlight = {
         enable = true,
