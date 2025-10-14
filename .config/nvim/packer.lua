@@ -26,14 +26,14 @@ return require('packer').startup(function(use)
 	-- visualizes undo history (including branches):
 	use { 'mbbill/undotree' }
 	use { 'tpope/vim-fugitive' }    -- git integration
-    use {'williamboman/mason.nvim'}  -- manages installation of LSP servers
-    use {'neovim/nvim-lspconfig'}    -- LSP configurations
-    use {'hrsh7th/nvim-cmp'}    -- completion engine
-    use {'hrsh7th/cmp-nvim-lsp'}    -- LSP source for nvim-cmp
-    use {'hrsh7th/cmp-buffer'}    -- buffer source for nvim-cmp
-    use {'hrsh7th/cmp-path'}    -- path source for nvim-cmp
-    use {'ray-x/lsp_signature.nvim'}    -- signature help
-    use {'L3MON4D3/LuaSnip'}    -- snippet engine
+    use { 'williamboman/mason.nvim'}  -- manages installation of LSP servers
+    use { 'neovim/nvim-lspconfig'}    -- LSP configurations
+    use { 'hrsh7th/nvim-cmp'}    -- completion engine
+    use { 'hrsh7th/cmp-nvim-lsp'}    -- LSP source for nvim-cmp
+    use { 'hrsh7th/cmp-buffer'}    -- buffer source for nvim-cmp
+    use { 'hrsh7th/cmp-path'}    -- path source for nvim-cmp
+    use { 'ray-x/lsp_signature.nvim'}    -- signature help
+    use { 'L3MON4D3/LuaSnip', run = "make install_jsregexp" }    -- snippet engine
     -- commenting / uncommenting easily:
     -- gcc comments out a line, gc comments out the target of a motion
     use { 'tpope/vim-commentary' }
