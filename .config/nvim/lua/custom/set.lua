@@ -69,3 +69,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- markdown-preview: Don't close preview when switching buffer:
 vim.g.mkdp_auto_close = 0
+
+-- use nerdfonts in dadbod-ui:
+vim.g.db_ui_use_nerd_fonts = true
