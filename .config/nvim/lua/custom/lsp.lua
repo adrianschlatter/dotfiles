@@ -1,6 +1,6 @@
 -- I want these LSP servers:
 local lsp_servers = {
-    'zuban',        -- python
+    'pylsp', -- python
     'lua_ls',       -- lua
     'marksman',     -- markdown
     'esbonio',      -- rst
