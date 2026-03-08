@@ -1,5 +1,5 @@
 # Default model (gpt-3.5-turbo, gpt-4, ggml-gpt4all-j...).
-default-model: grok-3-mini
+default-model: grok4-1
 # Text to append when using the -f flag.
 format-text:
   markdown: 'Format the response as markdown without enclosing backticks.'
@@ -58,6 +58,12 @@ apis:
     base-url: https://api.x.ai/v1
     api-key-env: XAI_API_KEY
     models:
+      grok-4-1-fast-reasoning:
+        aliases: ["grok4-1"]
+      grok-4-0709:
+        aliases: ["grok4"]
+      gibts-gar-nicht:
+        aliases: ["ggn"]
       grok-3-mini:
         aliases: ["grok3-mini"]
       grok-3:
