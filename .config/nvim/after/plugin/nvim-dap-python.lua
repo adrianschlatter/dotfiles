@@ -1,4 +1,5 @@
-require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+local python = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+require('dap-python').setup(python)
 require('dap-python').test_runner = 'pytest'
 
 -- debug/test/method:
