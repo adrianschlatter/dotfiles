@@ -112,7 +112,24 @@ HISTSIZE=2000
 # completions
 # =============================================================================
 
-autoload -Uz compinit; compinit; _comp_options+=(globdots)
+autoload -Uz compinit
+compinit
+_comp_options+=(globdots)
+# group names in bold:
+zstyle ':completion:*:descriptions' format '%B%d%b'
+# show menu select on double-tab:
+zstyle ':completion:*' menu select=0
+# group completions (e.g., "external command", "builtin command" ...):
+zstyle ':completion:*' group-name ''
+
+# configure vi-like navigation in completion menu:
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# completions for otherwise unsupported tools:
 source ~/.config/zsh/completion/timewarrior.zsh
 source ~/.config/zsh/completion/rbw.zsh
 
