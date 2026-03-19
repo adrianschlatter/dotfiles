@@ -78,7 +78,12 @@ vim.keymap.set('n', '<leader>q"', 'ciw"<C-r>""<esc>',
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<S-tab>", 'copilot#Accept("<CR>")',
                         { silent = true, expr = true })
-
+vim.g.copilot_filetypes = {
+                ['*'] = false,
+                python = true,
+                lua = true,
+                sh = true,
+}
 -- img-clip:
 vim.keymap.set('n', '<leader>ip', '<cmd>PasteImage<cr>',
                { desc = 'Paste image from system clipboard' })
