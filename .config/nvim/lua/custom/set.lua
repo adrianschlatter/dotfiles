@@ -1,3 +1,6 @@
+-- security: disable auto-execution of code in comments
+vim.opt.modeline = false
+
 -- block cursor:
 vim.opt.guicursor = ""
 
