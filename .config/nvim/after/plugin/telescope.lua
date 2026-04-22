@@ -1,6 +1,16 @@
 local builtin = require('telescope.builtin')
 local wk = require("which-key")
 
+require("telescope").setup({
+  defaults = {
+    preview = {
+      -- turn off treesitter for preview because there is a bug /
+      -- incompatibility between treesitter and nvim:
+      treesitter = false,
+    },
+  },
+})
+
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fr', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
