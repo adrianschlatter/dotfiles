@@ -236,6 +236,36 @@ fi
 
 source ~/.config/zsh/tools/nettools.rc
 
+# colored man pages:
+# (learned from @yousuckatprogramming who got it from https://grml.org)
+# =============================================================================
+
+# less (the pager) allows overriding terminal capabilities via a set of
+# environment variables. We use this to change styles. E.g., instead of sending
+# the sequence for double-bright mode, we send the sequence for bold red.
+# Then, we make sure man is using less as its pager.
+# Of course, these style changes apply to less in general, not only when it is
+# used to show man-pages.
+
+# Note: Compared to @yousuckatprogramming, I dropped those "overrides" that
+# replaced a formatting sequence with the same it already was.
+
+# blinking mode = bold red:
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
+# double-bright mode = bold red:
+export LESS_TERMCAP_md=$(tput bold; tput setaf 1)
+# stand-out mode = bold yellow on blue:
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+# leave stand-out mode = turn-off all appearance modes:
+export LESS_TERMCAP_se=$(tput sgr0)
+# underline mode = underline bold green:
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
+# leave underline mode = turn-off all appearance modes:
+export LESS_TERMCAP_ue=$(tput sgr0)
+
+# use less to show man-pages:
+export MANPAGER='less'
+
 # catppuccin syntax-highlighting theme
 # (must be last in this config file)
 # ============================================================================= 
