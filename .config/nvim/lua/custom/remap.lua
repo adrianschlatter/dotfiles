@@ -73,6 +73,12 @@ vim.keymap.set('n', '<leader>q`', 'ciw`<C-r>"`<esc>',
                { desc = 'backtick-quote word' })
 vim.keymap.set('n', '<leader>q"', 'ciw"<C-r>""<esc>',
                { desc = 'double-quote word' })
+-- quote words in brackets and curly braces
+-- (useful for markdown links):
+vim.keymap.set('n', '<leader>q[', 'ciw[<C-r>"]<esc>',
+               { desc = 'enclose word in []' })
+vim.keymap.set('n', '<leader>q(', 'ciw(<C-r>")<esc>',
+               { desc = 'enclose word in ()' })
 
 -- Github copilot:
 vim.g.copilot_no_tab_map = true
