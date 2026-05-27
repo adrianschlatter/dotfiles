@@ -1,6 +1,17 @@
 -- security: disable auto-execution of code in comments
 vim.opt.modeline = false
 
+-- use win32yank as clipboard under WSL2:
+if vim.fn.has("wsl") == 1 then
+    vim.g.clipboard = {
+        name = 'win32yank',
+        copy = { ['+'] = 'win32yank.exe -i --crlf',
+                 ['*'] = 'win32yank.exe -i --crlf', },
+        paste = { ['+'] = 'win32yank.exe -o --lf',
+                  ['*'] = 'win32yank.exe -o --lf', },
+        cache_enabled = 0, }
+end
+
 -- block cursor:
 vim.opt.guicursor = ""
 
