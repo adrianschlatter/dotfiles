@@ -66,9 +66,17 @@ ls.add_snippets('all', {
     s({trig = "''u", snippetType = 'autosnippet', wordTrig = false}, {t('ü')}),
     s({trig = "''U", snippetType = 'autosnippet', wordTrig = false}, {t('Ü')}),
     s({trig = "$$o", snippetType = 'autosnippet', wordTrig = false}, {t('ø')}),
+    s({trig = "$$O", snippetType = 'autosnippet', wordTrig = false}, {t('Ø')}),
+    s({trig = "$$a", snippetType = 'autosnippet', wordTrig = false}, {t('å')}),
+    s({trig = "$$A", snippetType = 'autosnippet', wordTrig = false}, {t('Å')}),
+    s({trig = "<<ae", snippetType = 'autosnippet', wordTrig = false}, {t('æ')}),
+    s({trig = "<<AE", snippetType = 'autosnippet', wordTrig = false}, {t('Æ')}),
     s({trig = "&&a", snippetType = 'autosnippet', wordTrig = false}, {t('à')}),
+    s({trig = "&&A", snippetType = 'autosnippet', wordTrig = false}, {t('À')}),
     s({trig = "&&e", snippetType = 'autosnippet', wordTrig = false}, {t('è')}),
+    s({trig = "&&E", snippetType = 'autosnippet', wordTrig = false}, {t('È')}),
     s({trig = "%%e", snippetType = 'autosnippet', wordTrig = false}, {t('é')}),
+    s({trig = "%%E", snippetType = 'autosnippet', wordTrig = false}, {t('É')}),
 })
 
 ls.add_snippets('python', {
