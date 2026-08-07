@@ -1,6 +1,6 @@
 -- I want these LSP servers:
 local lsp_servers = {
-    'pylsp', -- python
+    'pylsp',        -- python
     'lua_ls',       -- lua
     'marksman',     -- markdown
     'esbonio',      -- rst
@@ -9,7 +9,7 @@ local lsp_servers = {
 }
 
 -- Use mason.nvim to install them.
--- It will put them somewhere in ~/.local/share/nvim/mason/ and add there
+-- It will put them somewhere in ~/.local/share/nvim/mason/ and add their
 -- binaries to PATH (at least inside nvim).
 -- The following line also creates the `:Mason` command. Use it to install the
 -- LSP servers interactively. They will not be installed automatically.
