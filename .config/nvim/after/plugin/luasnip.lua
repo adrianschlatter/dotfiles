@@ -77,6 +77,7 @@ ls.add_snippets('all', {
     s({trig = "&&E", snippetType = 'autosnippet', wordTrig = false}, {t('È')}),
     s({trig = "%%e", snippetType = 'autosnippet', wordTrig = false}, {t('é')}),
     s({trig = "%%E", snippetType = 'autosnippet', wordTrig = false}, {t('É')}),
+    s({trig = "^^o", snippetType = 'autosnippet', wordTrig = false}, {t('°')}),
 })
 
 ls.add_snippets('python', {
@@ -124,6 +125,22 @@ ls.add_snippets('rst', {
             {}
         ]],
         {i(1, 'filename'), i(2, '<alternate text>'), i(0, '<caption>')})
+    ),
+})
+
+ls.add_snippets('rst', {
+    -- mosaic:
+    s({trig = 'mosaic'},
+      fmt(
+        [[
+        .. mosaic:: {}
+            :img: {}
+            :img: {}
+
+            {}
+        ]],
+        {i(1, '<# in first row>'), i(2, '<filename>'),
+         i(3, '<filename>'), i(0, '<caption>')})
     ),
 })
 
