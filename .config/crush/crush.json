@@ -1,12 +1,5 @@
 {  
     "$schema": "https://charm.land/crush.json",
-    "mcp": {  
-        "stack-mcp-server": {  
-            "type": "stdio",
-            "command": "npx",  
-            "args": [ "mcp-remote",  "https://mcp.stackoverflow.com" ]  
-        }
-    },
     "lsp": {
         "pylsp": {
             "command": "pylsp"
