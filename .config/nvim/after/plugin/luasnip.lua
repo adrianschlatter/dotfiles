@@ -159,3 +159,14 @@ ls.add_snippets('markdown', {
         {i(1, 'filename'), i(2, '<alternate text>'), i(0, '<caption>')})
     ),
 })
+
+ls.add_snippets("markdown", {
+    -- To Do List:
+    s({trig = 'todo'}, {
+        t("# "),
+        f(function()
+            return os.date("%Y-%m-%d")
+        end),
+        t({ "", "", "## To Do", "", "* [ ] " }),
+    }),
+})
