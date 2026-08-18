@@ -2,4 +2,5 @@
 .config/nvim/plugin
 .config/nvim/spell
 .config/mods/conversations
+.config/agents/skills/load-2percent-file-format/
 .local/share/nvim
