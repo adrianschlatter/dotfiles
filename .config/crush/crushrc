@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+lsp add pylsp --command pylsp
