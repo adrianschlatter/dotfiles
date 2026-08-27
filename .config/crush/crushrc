@@ -1,3 +1,15 @@
 #!/usr/bin/env bash
 
 lsp add pylsp --command pylsp
+permissions allow lsp_diagnostics lsp_definition lsp_references lsp_symbols
+permissions allow lsp_call_hierarchy lsp_rename lsp_replace_symbol lsp_restart
+
+# with these commands, I feel quite safe:
+permissions allow view ls grep edit multi-edit write
+
+# Bash Hooks: bash is dangerous
+# Some tools are ok, some are clearly not, all others: ask the user.
+hook add PreToolUse --matcher "^bash$" --command "bash $HOME/.config/crush/hooks/deny-sudo.sh" --name deny-sudo
+hook add PreToolUse --matcher "^bash$" --command "bash $HOME/.config/crush/hooks/deny-credential-helpers.sh" --name deny-credential-helpers
+hook add PreToolUse --matcher "^bash$" --command "bash $HOME/.config/crush/hooks/allow-text-tools.sh" --name allow-text-tools
+hook add PreToolUse --matcher "^bash$" --command "bash $HOME/.config/crush/hooks/allow-python-test-tools.sh" --name allow-python-test-tools
