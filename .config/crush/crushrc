@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# default model:
+model large copilot/gpt-5.6-luna
+
 lsp add pylsp --command pylsp
 permissions allow lsp_diagnostics lsp_definition lsp_references lsp_symbols
 permissions allow lsp_call_hierarchy lsp_rename lsp_replace_symbol lsp_restart
