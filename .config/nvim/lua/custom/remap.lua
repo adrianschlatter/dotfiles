@@ -79,6 +79,11 @@ vim.keymap.set('n', '<leader>q[', 'ciw[<C-r>"]<esc>',
                { desc = 'enclose word in []' })
 vim.keymap.set('n', '<leader>q(', 'ciw(<C-r>")<esc>',
                { desc = 'enclose word in ()' })
+-- (... and markdown emphasis):
+vim.keymap.set('n', '<leader>q*', 'ciw*<C-r>"*<esc>',
+               { desc = 'enclose word in *' })
+vim.keymap.set('n', '<leader>q_', 'ciw_<C-r>"_<esc>',
+               { desc = 'enclose word in _' })
 
 -- Github copilot:
 vim.g.copilot_no_tab_map = true
@@ -89,6 +94,7 @@ vim.g.copilot_filetypes = {
                 python = true,
                 lua = true,
                 sh = true,
+                markdown = true,
 }
 -- img-clip:
 vim.keymap.set('n', '<leader>ip', '<cmd>PasteImage<cr>',
