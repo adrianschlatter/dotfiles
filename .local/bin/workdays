@@ -1,0 +1,61 @@
+#!/bin/sh
+
+usage() {
+    printf 'Usage: %s --from YYYY-MM-DD --to YYYY-MM-DD\n' "$0" >&2
+    exit 2
+}
+
+from=
+to=
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --from)
+            [ "$#" -ge 2 ] || usage
+            from=$2
+            shift 2
+            ;;
+        --to)
+            [ "$#" -ge 2 ] || usage
+            to=$2
+            shift 2
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+[ -n "$from" ] && [ -n "$to" ] || usage
+
+from_epoch=$(date -u -d "$from" +%s 2>/dev/null) || {
+    printf 'Invalid date: %s\n' "$from" >&2
+    exit 2
+}
+to_epoch=$(date -u -d "$to" +%s 2>/dev/null) || {
+    printf 'Invalid date: %s\n' "$to" >&2
+    exit 2
+}
+[ "$(date -u -d "@$from_epoch" +%F)" = "$from" ] || {
+    printf 'Invalid date: %s\n' "$from" >&2
+    exit 2
+}
+[ "$(date -u -d "@$to_epoch" +%F)" = "$to" ] || {
+    printf 'Invalid date: %s\n' "$to" >&2
+    exit 2
+}
+[ "$from_epoch" -le "$to_epoch" ] || {
+    printf 'The --from date must not be after the --to date.\n' >&2
+    exit 2
+}
+
+count=0
+current=$from_epoch
+while [ "$current" -le "$to_epoch" ]; do
+    weekday=$(date -u -d "@$current" +%u)
+    if [ "$weekday" -le 5 ]; then
+        count=$((count + 1))
+    fi
+    current=$((current + 86400))
+done
+
+printf '%s\n' "$count"
