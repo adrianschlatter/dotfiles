@@ -1,31 +1,13 @@
 #!/bin/sh
 
 usage() {
-    printf 'Usage: %s --from YYYY-MM-DD --to YYYY-MM-DD\n' "$0" >&2
+    printf 'Usage: %s FROM TO\n' "$0" >&2
     exit 2
 }
 
-from=
-to=
-while [ "$#" -gt 0 ]; do
-    case "$1" in
-        --from)
-            [ "$#" -ge 2 ] || usage
-            from=$2
-            shift 2
-            ;;
-        --to)
-            [ "$#" -ge 2 ] || usage
-            to=$2
-            shift 2
-            ;;
-        *)
-            usage
-            ;;
-    esac
-done
-
-[ -n "$from" ] && [ -n "$to" ] || usage
+[ "$#" -eq 2 ] || usage
+from=$1
+to=$2
 
 from_epoch=$(date -u -d "$from" +%s 2>/dev/null) || {
     printf 'Invalid date: %s\n' "$from" >&2
