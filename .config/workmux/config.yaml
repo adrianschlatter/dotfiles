@@ -1,0 +1,11 @@
+nerdfont: true
+worktree_dir: .worktrees
+merge_strategy: rebase
+agent: pi
+
+panes:
+  - command: "crush"
+    focus: true
+  - split: horizontal
+    command: "vi"
+  - split: vertical
