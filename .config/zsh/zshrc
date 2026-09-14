@@ -60,6 +60,10 @@ if command -v qutebrowser > /dev/null; then
     alias cube='qutebrowser'
 fi
 
+if command -v workmux > /dev/null; then
+	alias wm='workmux'
+fi
+
 # Use rbw (bitwarden cli) for sudo and ssh passwords
 # =============================================================================
 
