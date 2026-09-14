@@ -73,8 +73,6 @@ if command -v rbw > /dev/null; then
 
     # also configure rbw-menu (separate tool) to use fzf:
     export RBW_MENU_COMMAND='fzf --prompt "$query: "'
-
-    alias ru='rbw unlock'
 fi
 
 # MOSH
@@ -93,6 +91,12 @@ fi
 [[ -f ~/.OPENAI_API_KEY ]] && export OPENAI_API_KEY=$(cat ~/.OPENAI_API_KEY)
 [[ -f ~/.XAI_API_KEY ]] && export XAI_API_KEY=$(cat ~/.XAI_API_KEY)
 [[ -f ~/.BRAVE_API_KEY ]] && export BRAVE_API_KEY=$(cat ~/.BRAVE_API_KEY)
+
+# crush things
+# =============================================================================
+
+export CRUSH_DISABLE_METRICS=1
+export DO_NOT_TRACK=1
 
 # HISTORY
 # ============================================================================= 
@@ -272,4 +276,3 @@ export MANPAGER='less'
 
 source ~/.config/zsh/catppuccin/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
