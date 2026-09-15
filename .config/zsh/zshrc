@@ -171,7 +171,9 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # completions for otherwise unsupported tools:
 source ~/.config/zsh/completion/timewarrior.zsh
-source ~/.config/zsh/completion/rbw.zsh
+eval "$(rbw gen-completions zsh)"
+eval "$(crush completion zsh)"
+eval "$(wm completions zsh)"
 
 # zoxide
 # =============================================================================
