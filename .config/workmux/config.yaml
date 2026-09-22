@@ -1,10 +1,14 @@
 nerdfont: true
 worktree_dir: .worktrees
 merge_strategy: rebase
-agent: pi
+agent: crush
+agents:
+  crush:
+    command: pi
+    type: pi
 
 panes:
-  - command: "crush"
+  - command: <agent>
     focus: true
   - split: horizontal
     command: "vi"
