@@ -6,7 +6,8 @@ agents:
   crush:
     command: pi
     type: pi
-
+sandbox:
+    enabled: true
 panes:
   - command: <agent>
     focus: true
