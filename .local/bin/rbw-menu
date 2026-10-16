@@ -26,7 +26,7 @@ chosen_item=$(
 	if [ "${RBW_MENU_COMMAND:-}" = "" ]; then
 		rbw list | wofi --dmenu --matching fuzzy --insensitive --prompt "$query"
 	else
-		eval "rbw list --fields name,user | $RBW_MENU_COMMAND"
+		eval "rbw list | $RBW_MENU_COMMAND"
 	fi
 )
 
