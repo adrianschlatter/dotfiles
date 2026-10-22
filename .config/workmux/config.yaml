@@ -7,7 +7,9 @@ agents:
     command: pi
     type: pi
 sandbox:
-    enabled: true
+  enabled: true
+  env_passthrough:
+    - OPENAI_API_KEY
 panes:
   - command: <agent>
     focus: true
