@@ -159,11 +159,6 @@ RUN cat <<'SCRIPT' > /usr/local/bin/project-startup.sh
 #!/bin/bash
 set -euo pipefail
 
-if [ ! -f pyproject.toml ] || [ ! -d src/ppf ]; then
-    echo "project-startup: expected to run in the mounted project worktree" >&2
-    exit 1
-fi
-
 if [ ! -x "${VIRTUAL_ENV}/bin/python" ]; then
     python3 -m venv "${VIRTUAL_ENV}"
 fi

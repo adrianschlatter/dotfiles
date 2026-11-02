@@ -10,7 +10,7 @@ sandbox:
   enabled: true
   env_passthrough:
     - OPENAI_API_KEY
-  image: cont-ai-ner:0.1.1
+  image: worktainer:0.1.2
 panes:
   - command: <agent>
     focus: true
