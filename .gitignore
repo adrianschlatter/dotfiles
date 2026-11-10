@@ -1,4 +1,4 @@
-.config/tmux/plugins
+.worktrees/
 .config/nvim/plugin
 .config/nvim/spell
 .config/mods/conversations
