@@ -11,6 +11,9 @@ sandbox:
   env_passthrough:
     - OPENAI_API_KEY
   image: worktainer:0.1.2
+  extra_mounts:
+    - host_path: ~/stow/dotfiles/.config/agents/skills
+      guest_path:  /tmp/.pi/agent/skills
 panes:
   - command: <agent>
     focus: true
