@@ -98,7 +98,7 @@ including any important limitations. Then present findings in severity order.
 Use this format for every finding:
 
 ```markdown
-### [Severity] Concise issue title
+### <ID>. [Severity] Concise issue title
 
 - **Observation:** What is wrong, stated precisely.
 - **Consequence:** The concrete risk or user/maintainer impact, including
