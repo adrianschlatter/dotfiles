@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
     iptables \
     util-linux \
+    vim \
     ripgrep \
     fd-find \
     imagemagick \
