@@ -9,31 +9,31 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     git \
     jq \
-    neovim \
     iptables \
     util-linux \
     ripgrep \
     fd-find \
-    ffmpeg \
     imagemagick \
     poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-deu \
     pandoc \
     python3 \
     python3-pip \
     python3-venv \
     && ln -s /usr/bin/fdfind /usr/local/bin/fd \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 ENV VIRTUAL_ENV=/tmp/venv \
-    PATH="/tmp/venv/bin:$PATH" \
-    EDITOR=nvim
+    PATH="/tmp/venv/bin:$PATH"
 
 # Pre-fetch commonly needed python packages into the image. The runtime
 # worktree is mounted later and the venv must be created as the sandbox user,
 # so we keep a read-only wheelhouse instead of baking /tmp/venv into the image.
 # project-startup.sh installs from this local wheelhouse, avoiding slow network
 # downloads on every container start.
-RUN python3 -m pip download --dest /opt/pip-wheels \
+RUN python3 -m pip download --no-cache-dir --dest /opt/pip-wheels \
     'setuptools>=40.5.0' \
     setuptools-scm \
     wheel \
@@ -44,11 +44,8 @@ RUN python3 -m pip download --dest /opt/pip-wheels \
     tox \
     twine \
     numpy \
-    scipy \
-    matplotlib \
     pandas \
-    openpyxl \
-    statsmodels
+    openpyxl
 
 # Workmux mounts the active worktree at runtime. Keep the image free of a
 # second, potentially stale copy of the project; the venv is created in the
@@ -215,13 +212,16 @@ RUN curl -fsSL https://raw.githubusercontent.com/raine/workmux/main/scripts/inst
 # Install Node.js (required for pi coding agent CLI)
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y --no-install-recommends nodejs && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 ARG CACHE_BUST=1
 
 # Install pi coding agent CLI globally.
 # npm global bin is /usr/local/bin so the `pi` binary is reachable when
 # running as an arbitrary non-root UID (--user uid:gid).
-RUN npm install -g @earendil-works/pi-coding-agent
+RUN npm install -g @earendil-works/pi-coding-agent && \
+    npm cache clean --force && \
+    rm -rf /root/.npm
 
 ENTRYPOINT ["/usr/local/bin/sandbox-entrypoint.sh"]
