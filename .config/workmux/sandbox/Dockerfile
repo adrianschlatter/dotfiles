@@ -29,12 +29,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV VIRTUAL_ENV=/tmp/venv \
     PATH="/tmp/venv/bin:$PATH"
 
-# Pre-fetch commonly needed python packages into the image. The runtime
-# worktree is mounted later and the venv must be created as the sandbox user,
-# so we keep a read-only wheelhouse instead of baking /tmp/venv into the image.
-# project-startup.sh installs from this local wheelhouse, avoiding slow network
-# downloads on every container start.
-RUN python3 -m pip download --no-cache-dir --dest /opt/pip-wheels \
+# Install commonly needed Python packages globally from a local wheelhouse.
+# The runtime venv is created by the sandbox user with --system-site-packages,
+# so it can use these image-provided packages and still install project-specific
+# packages into its own writable site-packages.
+RUN python3 -m pip download --no-cache-dir --only-binary=:all: --dest /opt/pip-wheels \
     'setuptools>=40.5.0' \
     setuptools-scm \
     wheel \
@@ -46,7 +45,9 @@ RUN python3 -m pip download --no-cache-dir --dest /opt/pip-wheels \
     twine \
     numpy \
     pandas \
-    openpyxl
+    openpyxl \
+    && python3 -m pip install --break-system-packages --no-index /opt/pip-wheels/*.whl \
+    && rm -rf /opt/pip-wheels
 
 # Workmux mounts the active worktree at runtime. Keep the image free of a
 # second, potentially stale copy of the project; the venv is created in the
@@ -158,7 +159,7 @@ RUN cat <<'SCRIPT' > /usr/local/bin/project-startup.sh
 set -euo pipefail
 
 if [ ! -x "${VIRTUAL_ENV}/bin/python" ]; then
-    python3 -m venv "${VIRTUAL_ENV}"
+    python3 -m venv --system-site-packages "${VIRTUAL_ENV}"
 fi
 
 # Activate the venv for the container command started by devcontainer/workmux.
