@@ -27,7 +27,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 ENV VIRTUAL_ENV=/tmp/venv \
-    PATH="/tmp/venv/bin:$PATH"
+    PATH="/tmp/venv/bin:$PATH" \
+    EDITOR=vim \
+    VISUAL=vim
 
 # Install commonly needed Python packages globally from a local wheelhouse.
 # The runtime venv is created by the sandbox user with --system-site-packages,
